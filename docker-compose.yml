@@ -1,0 +1,64 @@
+version: "3.7"
+
+services: 
+    api:
+        build: ./server/api
+        command: yarn start
+        restart: always
+        depends_on: 
+            - proxy
+            - db
+            - build_api
+        volumes: 
+            - ./server/api:/usr/share/app
+        networks: 
+            db:
+                ipv4_address: 172.25.20.10
+            backend:
+                ipv4_address: 172.35.10.10
+    
+    build_api: 
+        build: ./server/api
+        restart: always
+        command: tsc -w
+        volumes: 
+            - ./server/api:/usr/share/app
+        
+    proxy:
+        image: nginx
+        volumes: 
+            - ./proxy/nginx/conf.d:/etc/nginx/conf.d
+        ports:
+            - 80:80
+            - 443:443
+        command: [nginx-debug, '-g', 'daemon off;']
+        environment:
+            NGINX_PORT: 80      
+        networks: 
+            - backend
+        ports: 
+            - 80:80
+            - 443:443
+
+    db:
+        image: mongo
+        restart: always
+        environment:
+            MONGO_INITDB_ROOT_USERNAME: root
+            MONGO_INITDB_ROOT_PASSWORD: example
+        networks:
+            db:
+                ipv4_address: 172.25.20.15
+
+
+networks: 
+    backend:
+        driver: bridge
+        ipam:
+            config: 
+                - subnet: 172.35.10.1/16
+    db:
+        driver: bridge
+        ipam:
+            config: 
+                - subnet: 172.25.20.1/16
