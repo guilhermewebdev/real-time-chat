@@ -4,7 +4,7 @@ export interface DatabaseConfig {
     host: string;
     user: string;
     pass: string;
-    uri: string;
+    name: string;
     options: any;
 }
 

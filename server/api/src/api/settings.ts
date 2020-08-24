@@ -11,7 +11,7 @@ const settings:Settings = {
         host: process.env['DB_HOST']?.toString() || '',
         user: process.env['DB_USER']?.toString() || '',
         pass: process.env['DB_PASS']?.toString() || '',
-        uri: process.env['DB_URI']?.toString() || '',
+        name: process.env['DB_NAME']?.toString() || '',
         options: {
             useNewUrlParser: true,
             useFindAndModify: false,
