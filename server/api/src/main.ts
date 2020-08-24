@@ -5,4 +5,4 @@ const main = () => {
     server(settings);
 }
 
-main()
+main();

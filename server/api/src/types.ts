@@ -4,4 +4,7 @@ export interface Settings {
     port: number;
     middlewares: Array<Express>;
     host: string;
+    dbHost: string;
+    dbUser: string;
+    dbPass: string;
 }
