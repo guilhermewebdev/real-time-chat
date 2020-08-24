@@ -20,7 +20,7 @@ services:
     build_api: 
         build: ./server/api
         restart: always
-        command: tsc -w
+        command: yarn build
         volumes: 
             - ./server/api:/usr/share/app
         

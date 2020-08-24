@@ -7,9 +7,9 @@ ADD package.json .
 
 RUN yarn install
 
+
+RUN chown -R node /usr/share/app 
+
+USER node
+
 ENV PATH /app/node_modules/.bin:$PATH
-
-RUN useradd app \
-    && chown -R app /usr/share/app 
-
-USER app
