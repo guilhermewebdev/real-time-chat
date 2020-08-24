@@ -3,7 +3,7 @@ version: "3.7"
 services: 
     api:
         build: ./server/api
-        command: yarn start
+        command: yarn test
         restart: always
         depends_on: 
             - proxy
