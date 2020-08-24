@@ -1,7 +1,7 @@
 import express from 'express';
-import { Settings } from '../types';
+import { ServerConfig } from '../types';
 
-export default (settings: Settings) => {
+export default (settings: ServerConfig) => {
     const app = express();
     const { port, host, middlewares } = settings;
 
