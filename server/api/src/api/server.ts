@@ -9,5 +9,6 @@ export default (settings: Settings) => {
         app.use(middleware)
     })
 
-    app.listen(port, host)
+    app.listen(port, host);
+    return app;
 }
